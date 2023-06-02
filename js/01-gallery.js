@@ -24,23 +24,21 @@ galleryItems.forEach((img) => {
 gallery.insertAdjacentHTML('beforeend', galleryMarkup);
 
 
-const galleryLinks = document.querySelectorAll('.gallery__link');
-galleryLinks.forEach((link) => {
-    link.onclick = (event) => {
-        event.preventDefault();
-        const url = event.currentTarget;
-        basicLightbox.create(`
-                <img width="1400" height="900" src="${url.href}">
-            `).show();
-    };
+gallery.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (e.target.nodeName !== "IMG") {
+        return;
+    } 
+    const instance = basicLightbox.create(`
+        <img src="${e.target.dataset.source}">
+    `);
+    instance.show();
+
+    gallery.addEventListener("keydown", (e) => {
+        if (e.code === "Escape") {
+            instance.close();
+        }
+    });
 });
 
-// const close = document.querySelector(".gallery__item");
 
-gallery.addEventListener("keydown", (event) => {
-    if (event.code === 'Escape') {
-        console.log(event);
-        basicLightbox.close();
-        // basicLightbox.close(() => console.log('la caja de luz ya no es visible'))
-    }
-});

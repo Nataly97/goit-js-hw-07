@@ -24,16 +24,3 @@ let lightbox = new SimpleLightbox('.gallery__item a', {
     captionsData: "alt",
     captionDelay: 250,
 });
-
-
-
-// const galleryDescrip = document.querySelectorAll('.gallery__image');
-// galleryDescrip.forEach((link) => {
-//     link.onclick = (event) => {
-//         event.preventDefault();
-
-      
-
-//     };
-// });
-
